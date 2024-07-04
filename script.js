@@ -122,3 +122,10 @@ function showResults() {
     answerButtons.innerHTML = '';
     nextButton.classList.add('hide');
 }
+
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    modeToggle.innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
+startQuiz();
