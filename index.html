@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div class="container" data-tilt>
+        <h1 data-aos="fade-down">Quiz App</h1>
+        <div id="quiz-container" data-aos="fade-up">
+            <div id="question-container"></div>
+            <div id="answer-buttons" class="btn-container"></div>
+            <button id="next-btn" class="btn next-btn" data-aos="fade-right">Next</button>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init();
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 25,
+            speed: 400
+        });
+    </script>
+</body>
+</html>
