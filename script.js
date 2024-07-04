@@ -1,20 +1,20 @@
 const questions = [
     {
-        question: "What is the capital of France?",
+        question: "Where is HackClub HQ?",
         answers: [
             { text: "Berlin", correct: false },
-            { text: "Madrid", correct: false },
-            { text: "Paris", correct: true },
-            { text: "Lisbon", correct: false }
+            { text: "Seattle", correct: false },
+            { text: "Vermont", correct: true },
+            { text: "The Valley", correct: false }
         ]
     },
     {
-        question: "Who is the current CEO of Tesla?",
+        question: "Do you enjoy HackClub?",
         answers: [
-            { text: "Jeff Bezos", correct: false },
-            { text: "Elon Musk", correct: true },
-            { text: "Bill Gates", correct: false },
-            { text: "Sundar Pichai", correct: false }
+            { text: "No", correct: false },
+            { text: "YES", correct: true },
+            { text: "Yuck", correct: false },
+            { text: "Never", correct: false }
         ]
     },
 ];
@@ -25,10 +25,47 @@ const nextButton = document.getElementById('next-btn');
 const popup = document.getElementById('popup');
 const popupText = document.getElementById('popup-text');
 const modeToggle = document.getElementById('mode-toggle');
+const toggleQuizMakerButton = document.getElementById('toggle-quiz-maker');
+const quizMaker = document.getElementById('quiz-maker');
+const quizForm = document.getElementById('quiz-form');
+const startQuizButton = document.getElementById('start-quiz-btn');
 
 let currentQuestionIndex = 0;
 let score = 0;
+let quizMode = 'quiz'; // 'quiz' or 'maker'
 
+toggleQuizMakerButton.addEventListener('click', toggleQuizMaker);
+quizForm.addEventListener('submit', addQuestion);
+startQuizButton.addEventListener('click', startQuiz);
+
+function toggleQuizMaker() {
+    if (quizMode === 'quiz') {
+        quizMode = 'maker';
+        toggleQuizMakerButton.innerText = 'Back to Quiz';
+        quizMaker.style.display = 'block';
+        document.getElementById('quiz-container').style.display = 'none';
+    } else {
+        quizMode = 'quiz';
+        toggleQuizMakerButton.innerText = 'Create Quiz';
+        quizMaker.style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+    }
+}
+
+function addQuestion(event) {
+    event.preventDefault();
+    const question = quizForm.question.value;
+    const answers = [
+        { text: quizForm.answer1.value, correct: parseInt(quizForm.correct.value) === 1 },
+        { text: quizForm.answer2.value, correct: parseInt(quizForm.correct.value) === 2 },
+        { text: quizForm.answer3.value, correct: parseInt(quizForm.correct.value) === 3 },
+        { text: quizForm.answer4.value, correct: parseInt(quizForm.correct.value) === 4 }
+    ];
+    questions.push({ question, answers });
+    quizForm.reset();
+    alert('Question added successfully!');
+}
+  
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
@@ -85,12 +122,3 @@ function showResults() {
     answerButtons.innerHTML = '';
     nextButton.classList.add('hide');
 }
-
-nextButton.addEventListener('click', showNextQuestion);
-
-modeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    modeToggle.innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
-});
-
-startQuiz();

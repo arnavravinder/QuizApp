@@ -10,10 +10,42 @@
 <body>
     <div class="container" data-tilt>
         <h1 data-aos="fade-down">Quiz App</h1>
+        <button id="toggle-quiz-maker" class="btn">Create Quiz</button>
         <div id="quiz-container" data-aos="fade-up">
             <div id="question-container"></div>
             <div id="answer-buttons" class="btn-container"></div>
             <button id="next-btn" class="btn next-btn" data-aos="fade-right">Next</button>
+        </div>
+        <div id="quiz-maker" class="quiz-maker" data-aos="fade-up">
+            <h2>Create Your Quiz</h2>
+            <form id="quiz-form">
+                <div class="form-group">
+                    <label for="question">Question:</label>
+                    <input type="text" id="question" name="question" required>
+                </div>
+                <div class="form-group">
+                    <label for="answer1">Answer 1:</label>
+                    <input type="text" id="answer1" name="answer" required>
+                </div>
+                <div class="form-group">
+                    <label for="answer2">Answer 2:</label>
+                    <input type="text" id="answer2" name="answer" required>
+                </div>
+                <div class="form-group">
+                    <label for="answer3">Answer 3:</label>
+                    <input type="text" id="answer3" name="answer" required>
+                </div>
+                <div class="form-group">
+                    <label for="answer4">Answer 4:</label>
+                    <input type="text" id="answer4" name="answer" required>
+                </div>
+                <div class="form-group">
+                    <label for="correct">Correct Answer (1-4):</label>
+                    <input type="number" id="correct" name="correct" min="1" max="4" required>
+                </div>
+                <button type="submit" class="btn">Add Question</button>
+            </form>
+            <button id="start-quiz-btn" class="btn">Start Quiz</button>
         </div>
         <div id="popup" class="popup">
             <p id="popup-text"></p>

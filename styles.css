@@ -18,7 +18,7 @@ body.dark {
     border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
@@ -121,4 +121,35 @@ body.dark .popup {
 [data-aos="fade-up"].aos-animate {
     opacity: 1;
     transform: translateZ(0);
+}
+
+.quiz-maker {
+    display: none;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#toggle-quiz-maker {
+    margin-bottom: 20px;
+}
+
+#start-quiz-btn {
+    margin-top: 20px;
 }
