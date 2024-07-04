@@ -22,6 +22,9 @@ const questions = [
 const questionContainer = document.getElementById('question-container');
 const answerButtons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
+const popup = document.getElementById('popup');
+const popupText = document.getElementById('popup-text');
+const modeToggle = document.getElementById('mode-toggle');
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -40,19 +43,31 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(answer));
+        button.addEventListener('click', () => selectAnswer(answer, button));
         answerButtons.appendChild(button);
     });
 }
 
-function selectAnswer(answer) {
+function selectAnswer(answer, button) {
     if (answer.correct) {
+        button.classList.add('correct');
         score++;
+        popupText.innerText = "Correct!";
+    } else {
+        button.classList.add('incorrect');
+        popupText.innerText = `Incorrect! The correct answer is ${questions[currentQuestionIndex].answers.find(a => a.correct).text}.`;
     }
-    Array.from(answerButtons.children).forEach(button => {
-        button.classList.add(button.innerText === answer.text && answer.correct ? 'correct' : 'incorrect');
+    popup.style.display = 'block';
+    Array.from(answerButtons.children).forEach(btn => {
+        btn.disabled = true;
+        if (btn !== button && btn.innerText === answer.text && answer.correct) {
+            btn.classList.add('correct');
+        }
     });
-    nextButton.classList.remove('hide');
+    setTimeout(() => {
+        popup.style.display = 'none';
+        showNextQuestion();
+    }, 2000);
 }
 
 function showNextQuestion() {
@@ -72,5 +87,10 @@ function showResults() {
 }
 
 nextButton.addEventListener('click', showNextQuestion);
+
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    modeToggle.innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
 
 startQuiz();

@@ -6,44 +6,107 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background 0.3s ease;
+}
+
+body.dark {
+    background: linear-gradient(to right, #141E30, #243B55);
 }
 
 .container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 400px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark .container {
+    background: #333;
+    color: #fff;
 }
 
 h1 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 2em;
+}
+
+body.dark h1 {
+    color: #fff;
 }
 
 .btn-container {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn {
-    background: #4facfe;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
     border: none;
     border-radius: 5px;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     cursor: pointer;
-    margin: 5px;
-    transition: background 0.3s ease;
+    margin: 10px 0;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1.1em;
 }
 
 .btn:hover {
-    background: #00f2fe;
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+    transform: scale(1.05);
+}
+
+.correct {
+    background-color: #4CAF50 !important;
+}
+
+.incorrect {
+    background-color: #f44336 !important;
 }
 
 .next-btn {
     display: none;
+    background: #4facfe;
+    margin-top: 20px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+body.dark .popup {
+    background: #333;
+    color: #fff;
+}
+
+.mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.mode-toggle:hover {
+    transform: rotate(20deg);
 }
 
 [data-aos="fade-up"] {
